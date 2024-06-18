@@ -6,27 +6,27 @@
 #    By: joseph <joseph@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 17:53:36 by joseph            #+#    #+#              #
-#    Updated: 2024/05/30 17:54:30 by joseph           ###   ########.fr        #
+#    Updated: 2024/06/18 21:15:17 by joseph           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libftprintf
 
-INCLUDES = libftprintf.h
+INCLUDES = ft_printf.h
 
-SRC = 
+SRC = ft_printf.c ft_strs_printf.c ft_nbr_printf.c \
+	ft_hex_printf.c ft_ptr_printf.c ft_strlen.c
 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-
 $(NAME): $(OBJ)
-	ar -rv $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 %.o: %.c $(INCLUDES)
 	$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $@

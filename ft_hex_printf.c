@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_hex_printf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmenard <jmenard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 19:37:24 by jmenard           #+#    #+#             */
-/*   Updated: 2024/05/28 12:19:43 by jmenard          ###   ########.fr       */
+/*   Created: 2024/06/02 16:58:34 by joseph            #+#    #+#             */
+/*   Updated: 2024/06/03 13:42:11 by jmenard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_putnbr_base(unsigned long int nbr, const char *base)
 {
-			new->next = *lst;
-			*lst = new;
+	int	base_len;
+	int	c;
+
+	base_len = 16;
+	c = nbr % base_len;
+	nbr = nbr / base_len;
+	if (nbr != 0)
+		ft_putnbr_base(nbr, base);
+	write(1, &base[c], 1);
 }
